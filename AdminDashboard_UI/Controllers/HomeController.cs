@@ -22,7 +22,8 @@ namespace AdminDashboard_UI.Controllers
         }
         public IActionResult Dashboard()
         {
-            return View();
+            var data = _context.Products.ToList();
+			return View(data);
         }
         public IActionResult PasswordIncorrect()
         {
