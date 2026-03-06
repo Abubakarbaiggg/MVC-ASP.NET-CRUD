@@ -33,6 +33,24 @@ namespace AdminDashboard_UI.Controllers
         {
             return View();
         }
+        public IActionResult UpdateProduct(int productId)
+        {
+            var data = _context.Products.FirstOrDefault(p => p.ProductId == productId);
+            return View(data);
+
+        }
+        [HttpPost]
+        public IActionResult UpdateProduct(string name,string description,decimal price,string color,int productId)
+        {
+            var product = _context.Products.FirstOrDefault(p => p.Name == name);
+            product.Name = name;
+            product.Description = description;
+            product.Price = price;
+            product.Color = color;
+            _context.Products.Update(product);
+            _context.SaveChanges();
+            return RedirectToAction("Dashboard","Home");
+        }
         public IActionResult ExistingUserFound()
         {
             return View();

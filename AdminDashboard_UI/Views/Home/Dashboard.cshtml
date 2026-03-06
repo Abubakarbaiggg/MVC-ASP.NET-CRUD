@@ -10,23 +10,24 @@
 </div>
 <a asp-controller="Product" asp-action="AddProduct" class="btn btn-success mb-3">Add New Product</a>
 <table class="table table-striped">
-	<thead>
-		<tr>
-			<th>Product ID</th>
-			<th>Name</th>
-			<th>Description</th>
-			<th>Price</th>
-			<th>Color</th>
-			<th>Delete</th>
-		</tr>
-	</thead>
+    <thead>
+        <tr>
+            <th>Product ID</th>
+            <th>Name</th>
+            <th>Description</th>
+            <th>Price</th>
+            <th>Color</th>
+            <th>Update</th>
+            <th>Delete</th>
+        </tr>
+    </thead>
 	<tbody>
 		@{
 			if(Model == null || !Model.Any())
 			{
-				<tr>
-					<td colspan="6" class="text-center">No products available.</td>
-				</tr>
+                <tr>
+                    <td colspan="7" class="text-center">No products available.</td>
+                </tr>
 			}
 			else
 			{
@@ -38,7 +39,8 @@
 						<td>@product.Description</td>
 						<td>@product.Price</td>
 						<td>@product.Color</td>
-						<td><a asp-controller="Product" asp-action="DeleteProduct" asp-route-productid="@product.ProductId" class="btn btn-danger">Delete</a></td>
+                        <td><a asp-controller="Product" asp-action="UpdateProduct" asp-route-productid="@product.ProductId" class="btn btn-primary">Update</a></td>
+                        <td><a asp-controller="Product" asp-action="DeleteProduct" asp-route-productid="@product.ProductId" class="btn btn-danger">Delete</a></td>
 					</tr>
 				}
 			}

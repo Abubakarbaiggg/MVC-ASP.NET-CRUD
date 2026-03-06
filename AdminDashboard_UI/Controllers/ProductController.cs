@@ -41,5 +41,22 @@ namespace AdminDashboard_UI.Controllers
             return RedirectToAction("Dashboard", "Home");
         }
 
+        [HttpPost]
+        public IActionResult UpdateProductItem(int productId, string name, string description, decimal price, string color)
+        {
+            var product = _context.Products.FirstOrDefault(p => p.ProductId == productId);
+            if (product == null)
+            {
+                return NotFound();
+            }
+            product.Name = name;
+            product.Description = description;
+            product.Price = price;
+            product.Color = color;
+            _context.Products.Update(product);
+            _context.SaveChanges();
+            return RedirectToAction("Dashboard", "Home");
+        }
+
 	}
 }
